@@ -34,9 +34,10 @@ require'line/bot'
             message = reply_word(task)
             {type:'text',text:"タスク『#{task}』を登録しました！"}
             client.reply_message(event['replyToken'], message)
-          end
+          when /^ヘルプ$/
           message = {type:'text',text:"登録するときは、「めも　〇〇」と入力してください。"}
           client.reply_message(event['replyToken'], message)
+          end
         end
       end
     }
