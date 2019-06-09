@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TodoBot</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0">
+
+  </head>
+
+  <body class="container">
+    <% if notice.present? %>
+      <aside class="alert alert-info">
+        <%=notice%>
+      </aside>
+    <% end %>
+    <% if alert.present? %>
+      <aside class="alert alert-danger">
+        <%=alert%>
+      </aside>
+    <% end %>
+    <%= image_tag "ironman.png", style: "verticalalign:bottom; margin:10px; width:150px;" %>
+    <%= yield %>
+  </body>
+</html>

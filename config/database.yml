@@ -1,0 +1,22 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: root
+  password: 
+  socket: /tmp/mysql.sock
+
+development:
+  <<: *default
+  database: todo-bot_development
+
+test:
+  <<: *default
+  database: todo-bot_test
+
+production:
+  <<: *default
+  host: <%=ENV['DB_HOSTNAME']%>
+  database: <%=ENV['DB_NAME']%>
+  username: <%=ENV['DB_USERNAME']%>
+  password: <%=ENV['DB_PASSWORD']%>
