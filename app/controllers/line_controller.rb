@@ -26,15 +26,14 @@ require'line/bot'
           #メッセージの文字列を取得して、変数taskに代入
           case event.message['text']
           when /.*めも.*/
-            task = event.message['text']
-              # begin
-              Task.create!(task:task)
-              #登録に成功した場合、登録した旨をLINEで返す
-              message = reply_word(task)
-              {type:'text',text:"タスク『#{task}』を登録しました！"}
-              client.reply_message(event['replyToken'], message)
-              # rescue
-            # end
+            memoWords = event.message['text']
+            tasks = memoWords.split
+            task = tasks[1]
+            Task.create!(task:task)
+            #登録に成功した場合、登録した旨をLINEで返す
+            message = reply_word(task)
+            {type:'text',text:"タスク『#{task}』を登録しました！"}
+            client.reply_message(event['replyToken'], message)
           end
           message = {type:'text',text:"登録するときは、「めも　〇〇」と入力してください。"}
           client.reply_message(event['replyToken'], message)
