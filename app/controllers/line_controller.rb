@@ -24,19 +24,22 @@ require'line/bot'
         case event.type
         when Line::Bot::Event::MessageType::Text
           #メッセージの文字列を取得して、変数taskに代入
-          task = event.message['text']
-          #DBへの登録処理開始
-          begin
-            #メッセージの文字列をタスクテーブルに登録
-            Task.create!(task:task)
-            #登録に成功した場合、登録した旨をLINEで返す
-            message = reply_word(task)
-            {type:'text',text:"タスク『#{task}』を登録しました！"}
-            client.reply_message(event['replyToken'], message)
-            # rescue
-            # #登録に失敗した場合、登録に失敗した旨をLINEで返す
-            # message = {type:'text',text:"タスク『#{task}』の登録に失敗しました。"}
-            # client.reply_message(event['replyToken'], message)
+          case event.message['text']
+          when 'めも'
+            task = event.message['text']
+            #DBへの登録処理開始
+            begin
+              #メッセージの文字列をタスクテーブルに登録
+              Task.create!(task:task)
+              #登録に成功した場合、登録した旨をLINEで返す
+              message = reply_word(task)
+              {type:'text',text:"タスク『#{task}』を登録しました！"}
+              client.reply_message(event['replyToken'], message)
+              # rescue
+              # #登録に失敗した場合、登録に失敗した旨をLINEで返す
+              # message = {type:'text',text:"タスク『#{task}』の登録に失敗しました。"}
+              # client.reply_message(event['replyToken'], message)
+            end
           end
         end
       end
