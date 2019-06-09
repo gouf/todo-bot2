@@ -24,7 +24,7 @@ require'line/bot'
         case event.type
         when Line::Bot::Event::MessageType::Text
           #メッセージの文字列を取得して、変数taskに代入
-          task = event['message']['text']
+          task = event.message['text']
           #DBへの登録処理開始
           begin
             #メッセージの文字列をタスクテーブルに登録
