@@ -25,7 +25,7 @@ require'line/bot'
         when Line::Bot::Event::MessageType::Text
           #メッセージの文字列を取得して、変数taskに代入
           case event.message['text']
-          when /.*めも.*/
+          when /^めも/
             memoWords = event.message['text']
             tasks = memoWords.split
             task = tasks[1]
